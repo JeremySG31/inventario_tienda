@@ -1,9 +1,7 @@
+# controllers/venta_controller.py
 from models import venta_model
 from datetime import datetime
 
-def registrar_venta(id_producto, cantidad):
-    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    venta_model.registrar_venta(id_producto, cantidad, fecha)
-
-def ver_historial():
-    return venta_model.obtener_historial_ventas()
+def registrar_nueva_venta(producto_id, cantidad):
+    fecha_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    venta_model.registrar_venta(producto_id, cantidad, fecha_actual)

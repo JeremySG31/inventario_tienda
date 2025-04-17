@@ -1,33 +1,12 @@
-from .db import conectar_bd
+# models/producto_model.py
+from models.db import get_connection
 
-def insertar_producto(nombre, categoria, precio, stock):
-    conexion = conectar_bd()
-    if conexion:
-        cursor = conexion.cursor()
-        cursor.execute("INSERT INTO Productos (nombre, categoria, precio, stock) VALUES (?, ?, ?, ?)",
-                       (nombre, categoria, precio, stock))
-        conexion.commit()
-        conexion.close()
-
-
-def actualizar_producto(id_producto, nombre, categoria, precio, stock):
-    conexion = conectar_bd()
-    if conexion:
-        cursor = conexion.cursor()
-        cursor.execute("""
-            UPDATE Productos 
-            SET nombre = ?, categoria = ?, precio = ?, stock = ? 
-            WHERE id = ?
-        """, (nombre, categoria, precio, stock, id_producto))
-        conexion.commit()
-        conexion.close()
-
-
-def obtener_productos():
-    conexion = conectar_bd()
-    if conexion:
-        cursor = conexion.cursor()
-        cursor.execute("SELECT * FROM Productos")
-        productos = cursor.fetchall()
-        conexion.close()
-        return productos
+def insertar_producto(nombre, descripcion, precio, stock):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO productos (nombre, descripcion, precio, stock)
+        VALUES (?, ?, ?, ?)
+    ''', (nombre, descripcion, precio, stock))
+    conn.commit()
+    conn.close()

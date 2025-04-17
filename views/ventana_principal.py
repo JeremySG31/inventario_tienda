@@ -1,14 +1,17 @@
+# views/ventana_principal.py
 import tkinter as tk
-from views.registrar_producto import ventana_registrar
-from views.consultar_inventario import ventana_consultar
-from views.registrar_venta import ventana_venta
+from views.registrar_producto import ventana_registrar_producto
+from views.consultar_inventario import ventana_consultar_inventario
+from views.registrar_venta import ventana_registrar_venta
+from views.actualizar_producto import ventana_actualizar_producto
 
-def main_view():
-    ventana = tk.Tk()
-    ventana.title("Sistema de Inventario")
+def ventana_principal(root):
+    frame = tk.Frame(root)
+    frame.pack(padx=20, pady=20)
 
-    tk.Button(ventana, text="Registrar Producto", command=ventana_registrar).pack()
-    tk.Button(ventana, text="Consultar Inventario", command=ventana_consultar).pack()
-    tk.Button(ventana, text="Registrar Venta", command=ventana_venta).pack()
+    tk.Label(frame, text="Sistema de Gestión de Inventario", font=("Arial", 16)).pack(pady=10)
 
-    ventana.mainloop()
+    tk.Button(frame, text="Registrar Producto", width=25, command=ventana_registrar_producto).pack(pady=5)
+    tk.Button(frame, text="Consultar Inventario", width=25, command=ventana_consultar_inventario).pack(pady=5)
+    tk.Button(frame, text="Registrar Venta", width=25, command=ventana_registrar_venta).pack(pady=5)
+    tk.Button(frame, text="Actualizar Producto", width=25, command=ventana_actualizar_producto).pack(pady=5)

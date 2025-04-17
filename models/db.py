@@ -1,15 +1,32 @@
-import pyodbc
+# models/db.py
+import sqlite3
 
-def conectar_bd():
-    try:
-        conexion = pyodbc.connect(
-            'DRIVER={ODBC Driver 17 for SQL Server};'
-            'SERVER=localhost;'
-            'DATABASE=InventarioTienda;'
-            'UID=tu_usuario;'
-            'PWD=tu_contraseña'
-        )
-        return conexion
-    except Exception as e:
-        print("Error al conectar con la base de datos:", e)
-        return None
+def get_connection():
+    return sqlite3.connect('inventario.db')
+
+def create_tables():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS productos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        descripcion TEXT,
+        precio REAL NOT NULL,
+        stock INTEGER NOT NULL
+    )
+    ''')
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS ventas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        producto_id INTEGER,
+        cantidad INTEGER,
+        fecha TEXT,
+        FOREIGN KEY (producto_id) REFERENCES productos(id)
+    )
+    ''')
+
+    conn.commit()
+    conn.close()

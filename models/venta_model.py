@@ -1,22 +1,12 @@
-from .db import conectar_bd
+# models/venta_model.py
+from models.db import get_connection
 
-def registrar_venta(id_producto, cantidad, fecha):
-    conexion = conectar_bd()
-    if conexion:
-        cursor = conexion.cursor()
-        cursor.execute("""
-            INSERT INTO Ventas (id_producto, cantidad, fecha)
-            VALUES (?, ?, ?)
-        """, (id_producto, cantidad, fecha))
-        conexion.commit()
-        conexion.close()
-
-
-def obtener_historial_ventas():
-    conexion = conectar_bd()
-    if conexion:
-        cursor = conexion.cursor()
-        cursor.execute("SELECT * FROM Ventas")
-        ventas = cursor.fetchall()
-        conexion.close()
-        return ventas
+def registrar_venta(producto_id, cantidad, fecha):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO ventas (producto_id, cantidad, fecha)
+        VALUES (?, ?, ?)
+    ''', (producto_id, cantidad, fecha))
+    conn.commit()
+    conn.close()
