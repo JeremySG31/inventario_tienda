@@ -1,4 +1,3 @@
-# controllers/venta_controller.py
 from models import venta_model
 from datetime import datetime
 

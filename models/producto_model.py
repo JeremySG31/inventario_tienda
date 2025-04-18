@@ -1,4 +1,3 @@
-# models/producto_model.py
 from models.db import get_connection
 
 def insertar_producto(nombre, descripcion, precio, stock):

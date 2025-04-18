@@ -1,4 +1,3 @@
-# views/registrar_producto.py
 import tkinter as tk
 from controllers.producto_controller import registrar_nuevo_producto
 

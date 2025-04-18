@@ -1,4 +1,3 @@
-# controllers/historial_controller.py
 from models.db import get_connection
 
 def obtener_historial_ventas():

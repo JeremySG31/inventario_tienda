@@ -1,4 +1,3 @@
-# views/consultar_inventario.py
 import tkinter as tk
 from models.db import get_connection
 

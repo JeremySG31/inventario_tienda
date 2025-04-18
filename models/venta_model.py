@@ -1,4 +1,3 @@
-# models/venta_model.py
 from models.db import get_connection
 
 def registrar_venta(producto_id, cantidad, fecha):

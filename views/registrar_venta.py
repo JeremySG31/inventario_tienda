@@ -1,4 +1,3 @@
-# views/registrar_venta.py
 import tkinter as tk
 from controllers.venta_controller import registrar_nueva_venta
 from models.db import get_connection
@@ -23,7 +22,6 @@ def ventana_registrar_venta():
 
     tk.Button(ventana, text="Guardar Venta", command=guardar_venta).grid(row=2, column=0, columnspan=2, pady=10)
 
-    # Opcional: Mostrar productos para facilitar
     tk.Label(ventana, text="Lista de Productos:", font=("Arial", 10, "bold")).grid(row=3, column=0, columnspan=2)
 
     conn = get_connection()
